@@ -13,6 +13,7 @@
 * It must contain name and time to run that scenario , best suited in seconds
 * You can keep adding scenarios and all the scenarios are listed in all scenarios tap on side bar
 * now add a vehicle use a scenario of your kind
+* enter all feilds  with speed can be any number but its best suits for speed below 50 
 * you can add any number of vehicle to a scenario but there will only one scenario for a vehicle
 * edit and delete buttons on home are fully functional based on you cursor postion while clicking resped items is deleted
 * click on edit it re-directed to a page based on element you have selected with some predefined info of vehicle is shown
