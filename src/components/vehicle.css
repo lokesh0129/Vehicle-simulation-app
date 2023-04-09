@@ -1,0 +1,42 @@
+.vehicle{
+    display: flex;
+    margin-block: auto;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.position{
+    display: flex;
+    margin-block: auto;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(70, 64, 64);
+     
+}
+.vehicle_input{
+    display: flex;
+    flex-direction: column;
+    
+    margin: auto;
+     
+}
+input{
+    background-color: black;
+    height: 30px;
+    color: bisque;
+}
+select{
+    width: 170px;
+    background-color: rgb(110, 101, 101);
+    height: 30px;
+}
+option{
+    background-color: rgb(110, 106, 106);
+}
+label{
+    color: rgb(206, 197, 197);
+}
