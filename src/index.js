@@ -9,6 +9,8 @@ import AddVehicles from './components/AddVehicles';
 import AllScenarios from './components/AllScenarios';
 import VehiclesList from './components/VehiclesList';
 import Info from './components/Info';
+import EditScenario from './components/EditScenario';
+ 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +20,7 @@ const router = createBrowserRouter(
       <Route path='addvehicles' element={<AddVehicles/>}/>
       <Route path='allscenarios' element={<AllScenarios/>}/>
       <Route path='vehiclelist' element={<VehiclesList />}/>
+      <Route path='editscenario' element={<EditScenario />}/>
       <Route path='info' element={<Info />}/>
     </Route>
   )

@@ -1,19 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Home.css";
-import { BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 const Home = () => {
   const containerRef = useRef(null);
   const navigate = useNavigate();
-  const [intervalId, setIntervalId] = useState(null);
-  const [intervalIdDown, setIntervalIdDown] = useState(null);
-  const [intervalIdLeft, setIntervalIdLeft] = useState(null);
-  const [intervalIdRight, setIntervalIdRight] = useState(null);
   const [selectedScenario, setSelectedScenario] = useState("");
+  const [intervalObj, setIntervalObj] = useState({});
   const [list, setList] = useState([]);
   const [localvehicle, setLocalVehicle] = useState([]);
- 
+
   const vehicleList = JSON.parse(localStorage.getItem("vehicleList"));
   const [position, setPosition] = useState({
     top: "",
@@ -34,7 +30,6 @@ const Home = () => {
       left: topLeft[0],
       bottom: bottomLeft[1],
       right: bottomRight[0],
-
     });
     localStorage.setItem("position", JSON.stringify(position));
   }, []);
@@ -51,7 +46,7 @@ const Home = () => {
   useEffect(() => {
     const scenariolist = localStorage.getItem("scenarioList");
     const data = JSON.parse(scenariolist);
-    //console.log(data);
+
     const ele = document.getElementById("scenarioList");
     if (data && ele.childNodes.length - 1 !== data.length) {
       const ele = document.getElementById("scenarioList");
@@ -65,132 +60,118 @@ const Home = () => {
         option.value = `${e.name}`;
         option.key = { index };
         ele.appendChild(option);
-        return console.log(ele);
-      
+        return console.log();
       });
     }
   });
 
   const handleChange = (e) => {
-    //console.log(e.target.value);
     setSelectedScenario(e.target.value);
   };
 
   const handleSimulation = (e) => {
     if (e && list.length > 0) {
-      //console.log(list);
       const { left, right, top, bottom } = position;
       console.log(left, right, top, bottom);
-      //console.log(selectedScenario);
+
       const scenariolist = localStorage.getItem("scenarioList");
       const data = JSON.parse(scenariolist);
-      //console.log(data);
+
       const ourScenario = data.filter((e) => {
         return selectedScenario === e.name;
       });
-      //console.log(ourScenario);
-      const time = ourScenario[0].time;
-      //console.log("list", list);
+      console.log(ourScenario);
+      let time = ourScenario[0]?.time;
 
+      if (time === undefined) {
+        time = 2;
+      }
       list.forEach((e, index) => {
         if (e.direction === "upwards") {
           console.log("Upwards");
           const element = document.getElementById(`${index}`);
-          //console.log(element);
-          //console.log(element.style.top);
+
           let value = element.style.top;
           value = Number(value.slice(0, value.length - 2));
-          const id = setInterval(() => {
+
+          const name = setInterval(() => {
             element.style.top = value + "px";
             value -= Number(e.speed);
-
-            //console.log("Interval is running...",console.log(element.style.left));
           }, 100);
+          setIntervalObj((prev) => {
+            return { ...prev, [`id${index}`]: name };
+          });
 
-          setIntervalId(id);
           setTimeout(() => {
-            clearInterval(id);
-            setIntervalId(null);
+            clearInterval(name);
           }, Number(time) * 1000);
         }
 
         if (e.direction === "downwards") {
           console.log("downwards");
           const element = document.getElementById(`${index}`);
-          //console.log(element);
-          //console.log(element.style.top);
+
           let value = element.style.top;
           value = Number(value.slice(0, value.length - 2));
-          const down = setInterval(() => {
+          const id = setInterval(() => {
             element.style.top = value + "px";
             value += Number(e.speed);
-
-            //console.log("Interval is running...",console.log(element.style.left));
           }, 100);
-          setIntervalIdDown(down);
+
+          setIntervalObj((prev) => {
+            return { ...prev, [`id${index}`]: id };
+          });
+
           setTimeout(() => {
-            clearInterval(down);
-            setIntervalIdDown(null);
+            clearInterval(id);
           }, Number(time) * 1000);
         }
 
         if (e.direction === "towards") {
           console.log("Towards");
           const element = document.getElementById(`${index}`);
-          //console.log(element);
-          //console.log(element.style.top);
+
           let value = element.style.left;
           value = Number(value.slice(0, value.length - 2));
-          const right = setInterval(() => {
+          const id = setInterval(() => {
             element.style.left = value + "px";
             value += Number(e.speed);
-
-            //console.log("Interval is running...",console.log(element.style.left));
           }, 100);
-          setIntervalIdRight(right);
+          setIntervalObj((prev) => {
+            return { ...prev, [`id${index}`]: id };
+          });
+
           setTimeout(() => {
-            clearInterval(right);
-            setIntervalIdRight(null);
+            clearInterval(id);
           }, Number(time) * 1000);
         }
         if (e.direction === "backwards") {
           console.log("backwards");
           const element = document.getElementById(`${index}`);
-          // console.log(element);
-          // console.log(element.style.top);
+
           let value = element.style.left;
           value = Number(value.slice(0, value.length - 2));
-          const left = setInterval(() => {
+          const id = setInterval(() => {
             element.style.left = value + "px";
             value -= Number(e.speed);
-
-            //console.log("Interval is running...",console.log(element.style.left));
           }, 100);
-          setIntervalId(left);
+          setIntervalObj((prev) => {
+            return { ...prev, [`id${index}`]: id };
+          });
+
           setTimeout(() => {
-            clearInterval(left);
-            setIntervalIdLeft(null);
+            clearInterval(id);
           }, Number(time) * 1000);
         }
       });
     }
   };
   const handleSimulationstop = () => {
-    if (
-      intervalId !== null ||
-      intervalIdDown !== null ||
-      intervalIdLeft !== null ||
-      intervalIdRight !== null
-    ) {
-      clearInterval(intervalId);
-      setIntervalId(null);
-      clearInterval(intervalIdDown);
-      setIntervalIdLeft(null);
-      clearInterval(intervalIdRight);
-      setIntervalIdRight(null);
-      clearInterval(intervalIdLeft);
-      setIntervalIdDown(null);
-    }
+    list.forEach((e, index) => {
+      clearInterval(intervalObj[`id${index}`]);
+    });
+
+    console.log(intervalObj);
   };
 
   const handleClickedVehicle = (e) => {
@@ -227,18 +208,20 @@ const Home = () => {
 
   return (
     <div id="home">
-      
       <div id="select_scenario">
-      
         <label htmlFor="direction">Scenario</label>
         <select name="" id="scenarioList" onChange={handleChange}>
           <option value="">select a scenario</option>
         </select>
-        <div  id="info">
-          <AiOutlineInfoCircle onClick={()=>{navigate("/info")}}/>
+        <div id="info">
+          <AiOutlineInfoCircle
+            onClick={() => {
+              navigate("/info");
+            }}
+          />
         </div>
       </div>
-      
+
       <div id="vehicleList">
         <div id="vehicles">
           <div className="vehicle_heading">
@@ -251,26 +234,24 @@ const Home = () => {
             <h4 className="vehicle_ele">Edit</h4>
             <h4 className="vehicle_ele">delete</h4>
           </div>
-          
+
           <div className="list_render">
-         
             {list &&
               list.map((e, index) => {
                 return (
                   <div
+                    key={index}
                     className="vehicle_render"
                     onClick={handleClickedVehicle}
                   >
-                    <h4 className="vehicle_ele">{index}</h4>
+                    <h4 className="vehicle_ele">{index+1}</h4>
                     <h4 className="vehicle_ele">{e.name}</h4>
                     <h4 className="vehicle_ele">{e.positionX}</h4>
                     <h4 className="vehicle_ele">{e.positionY}</h4>
                     <h4 className="vehicle_ele">{e.speed}</h4>
                     <h4 className="vehicle_ele">{e.direction}</h4>
                     <h4 className="vehicle_ele">Edit</h4>
-                    <h4 className="vehicle_ele">
-                       delete
-                    </h4>
+                    <h4 className="vehicle_ele">delete</h4>
                   </div>
                 );
               })}
@@ -315,14 +296,7 @@ const Home = () => {
             </div>
           );
         })}
-        {/* <div id="element" style={ {position: "absolute",
-            left: `${variable}`  ,
-            top:  `${variableY}`
-            }}>
-             1
-        </div> */}
       </div>
-     
     </div>
   );
 };

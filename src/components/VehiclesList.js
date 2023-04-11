@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
+
 const VehiclesList = () => {
   const [vehicle, setVehicle] = useState({});
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import React, { useEffect,  useState } from 'react'
-import './vehicle.css'
+import './Vehicle.css'
 import { useNavigate } from 'react-router-dom'
 
 const AddVehicles = () => {
@@ -60,7 +60,7 @@ const AddVehicles = () => {
   useEffect(()=>{
     const list = localStorage.getItem('scenarioList')
     const data = JSON.parse(list)
-    console.log(data)
+    //console.log(data)
     const ele = document.getElementById('scenarioList')
     if(data   && ele.childNodes.length-1 !==data.length ){
     const ele = document.getElementById('scenarioList')
@@ -68,16 +68,16 @@ const AddVehicles = () => {
       const option =  document.createElement('option')
       option.textContent =`${e.name}`
       option.setAttribute="value"
-      option.setAttribute="value"
+      option.setAttribute="key"
       option.setAttribute="color:white"
       option.value=`${e.name}`
       option.key={index}
       ele.appendChild(option)
-      return option
+      return  ''
     })
     
   }
-  console.log(ele)
+   
   },[])
    
   return (

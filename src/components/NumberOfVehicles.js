@@ -6,7 +6,7 @@ const NumberOfVehicles = ({scenario}) => {
     const number = list && list.filter((ele)=>{
         return ele.scenario ===  scenario
    })
-   console.log(number)
+   //console.log(number)
    const numberOfvehicle = number ? number.length:0
   return (
     <>

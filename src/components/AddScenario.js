@@ -10,7 +10,7 @@ const AddScenario = () => {
     name: "",
     time: 0,
   });
-  console.log(scenario)
+  //console.log(scenario)
 
   useEffect(() => {
     const storedList = JSON.parse(localStorage.getItem("scenarioList"));
