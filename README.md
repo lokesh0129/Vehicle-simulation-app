@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+* clone it from repository
+* use basic commands to run
+*   npm install
+*   npm start
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+*    https://simulation-app-45087.web.app/
 
-## Available Scripts
 
-In the project directory, you can run:
+ Above link is simulation app which is deployed and hosted  in firebase here is all functionalities are fully executed a in code
+ 
 
-### `npm start`
+* First add a scenario your wish
+* It must contain name and time to run that scenario , best suited in seconds
+* You can keep adding scenarios and all the scenarios are listed in all scenarios tap on side bar
+* now add a vehicle use a scenario of your kind
+* enter all feilds  with speed can be any number but its best suits for speed below 50 
+* you can add any number of vehicle to a scenario but there will only one scenario for a vehicle
+* edit and delete buttons on home are fully functional based on you cursor postion while clicking resped items is deleted
+* click on edit it re-directed to a page based on element you have selected with some predefined info of vehicle is shown
+* now you can change the vehicle properties of you wish you mandatory to note all the fileds are mandatory
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+About grid
+* Top left coner is (0,0) co-ordinates based on the screen size rest 3 corners have different value
+* if selected location of a vehicle falls out of this grid is hidden but all functionalites are applied
+* for example if a vehicle is located below of grid in y-axis with direction of motion upwards , it will be visible when its location is in range of grid
+* vehicle intially in grid can move out grid in process of moving based on applied speed and time of scenario
+*app is adjusted for all screen sizes and give same result but best suited for sceen width 700px and above
